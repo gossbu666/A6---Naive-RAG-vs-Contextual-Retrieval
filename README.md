@@ -112,6 +112,14 @@ Visit `http://localhost:5000` to use the chatbot. It uses the **Contextual Retri
 
 ---
 
+## Web Application
+
+![Chatbot Demo](screenshots/web.png)
+
+The chatbot uses the **Contextual Retrieval** backend and displays the source chunks used to generate each answer.
+
+---
+
 ## Key Findings
 
 **Contextual Retrieval outperforms Naive RAG on ROUGE-1 (+0.0070) and ROUGE-2 (+0.0018).** By prepending each chunk with an LLM-generated context summary, the retriever better understands what each chunk covers relative to the full document — bridging vocabulary gaps between user queries and raw document text.
