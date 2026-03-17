@@ -1,0 +1,14 @@
+services:
+  nlu-a6-rag:
+    build: .
+    image: nlu-a6-rag
+    container_name: nlu_a6_rag
+    ports:
+      - "8890:8888"
+      - "5000:5000"
+    volumes:
+      - ./:/workspace
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true

@@ -1,0 +1,122 @@
+[
+  {
+    "question": "What is logistic regression and what type of task is it used for?",
+    "ground_truth_answer": "Logistic regression is a supervised machine learning classifier used for classification tasks. It learns to map input features to output classes by estimating the probability that an input belongs to a particular class, using the logistic (sigmoid) function to squash outputs to a probability between 0 and 1.",
+    "naive_rag_answer": "Logistic regression is a type of probabilistic classiﬁer that uses the sigmoid function to compute the probability of a binary event. It is used for binary classiﬁcation tasks, where the goal is to predict the probability that a given instance belongs to one of two classes. In the context of the skip-gram model, logistic regression is used to train a classiﬁer to distinguish between positive examples (target word and a neighboring context word) and negative samples (randomly sampled words).",
+    "contextual_retrieval_answer": "Logistic regression is a probabilistic classifier that assigns a probability to a context window based on its similarity to a target word. It is used for binary classification tasks, such as distinguishing between positive and negative examples. In the context of word embeddings, logistic regression is used to train a classiﬁer to distinguish between context words that are likely to occur near a target word and those that are not."
+  },
+  {
+    "question": "What is the sigmoid function and what role does it play in logistic regression?",
+    "ground_truth_answer": "The sigmoid function is defined as sigma(z) = 1 / (1 + e^(-z)). It maps any real number to a value between 0 and 1, allowing logistic regression to output a probability. It is used to squash the dot product of weights and input features into the [0,1] range to represent the probability of the positive class.",
+    "naive_rag_answer": "The sigmoid function, denoted as σ(x), is the fundamental core of logistic regression. It returns a number between 0 and 1. In the context of logistic regression, it is used to model the probability that a word c is a real context word for a target word w. The sigmoid function is applied to the dot product of the embeddings of the target word with each context word to compute the probability.",
+    "contextual_retrieval_answer": "The sigmoid function, denoted as σ(x), is the fundamental core of logistic regression. It returns a number between 0 and 1, representing the probability of an event occurring. In the context of word embeddings, the sigmoid function is used to model the probability that a word c is a real context word for a target word w. It plays a crucial role in logistic regression by allowing the model to output a probability value, which is essential for making predictions."
+  },
+  {
+    "question": "How is the decision boundary determined in binary logistic regression?",
+    "ground_truth_answer": "In binary logistic regression the decision boundary is where the probability equals 0.5, which corresponds to when the linear combination w·x + b equals 0. If the value is above 0, the classifier predicts the positive class; below 0, it predicts the negative class.",
+    "naive_rag_answer": "The decision boundary in binary logistic regression is determined by the sigmoid function σ(x), which returns a number between 0 and 1. The decision boundary is typically set at 0.5, where the probability of a word being a context word is equal to the probability of it not being a context word.",
+    "contextual_retrieval_answer": "The context does not contain enough information to answer the question about how the decision boundary is determined in binary logistic regression."
+  },
+  {
+    "question": "What is the cross-entropy loss function used in logistic regression?",
+    "ground_truth_answer": "The cross-entropy loss (also called log loss) measures the difference between the predicted probability and the true label. For binary classification it is defined as L = -[y * log(p) + (1 - y) * log(1 - p)], where y is the true label and p is the predicted probability.",
+    "naive_rag_answer": "The cross-entropy loss function used in logistic regression is not explicitly mentioned in the provided context. However, the loss function L(w,cpos,cneg*) = −log is mentioned in the context, which is related to the skip-gram model. This loss function is used to minimize the difference between the predicted probability and the actual probability of a word being a context word.",
+    "contextual_retrieval_answer": "The cross-entropy loss function used in logistic regression is expressed as:\n\nL(w,cpos,cneg*) = −log (P(+|w,cpos) \\* P(−|w,cneg1) \\* ... \\* P(−|w,cnegk))\n\nwhere P(+|w,cpos) is the probability that the context word cpos is a real context word for the target word w, and P(−|w,cnegi) is the probability that the noise word cnegi is not a real context word for the target word w."
+  },
+  {
+    "question": "What is gradient descent and how is it used to train logistic regression?",
+    "ground_truth_answer": "Gradient descent is an optimization algorithm that iteratively updates model parameters in the direction that minimizes the loss function. The weights are updated by subtracting the gradient scaled by a learning rate: w = w - learning_rate * gradient.",
+    "naive_rag_answer": "Gradient descent is a method used to minimize the loss function in logistic regression. It is an optimization algorithm that iteratively updates the model parameters to reduce the loss. In the context of skip-gram, stochastic gradient descent is used to train the classiﬁer by learning embeddings that have a high dot product with embeddings of words that occur nearby and a low dot product with noise words. The update equations for gradient descent in skip-gram are given by Eqs. 5.25-5.27.",
+    "contextual_retrieval_answer": "Unfortunately, the provided context does not contain enough information about gradient descent and its application to train logistic regression. However, it does mention that the skip-gram model minimizes the loss function using stochastic gradient descent.\n\nTo answer the question accurately, I would need more context or information about gradient descent and its application to logistic regression."
+  },
+  {
+    "question": "What is stochastic gradient descent (SGD) and how does it differ from batch gradient descent?",
+    "ground_truth_answer": "Stochastic gradient descent updates model parameters after computing the gradient on a single training example rather than the full training set. SGD is faster per update and can escape local minima, but is less stable than batch gradient descent.",
+    "naive_rag_answer": "Stochastic gradient descent (SGD) is an optimization algorithm used to minimize the loss function in machine learning models. It differs from batch gradient descent in that it updates the model parameters after each training example, rather than after the entire batch of examples.\n\nIn batch gradient descent, the model parameters are updated after processing the entire batch of training examples, whereas in SGD, the model parameters are updated after processing each individual example. This makes SGD more computationally efficient and suitable for large datasets, but it can be more noisy and require more iterations to converge.\n\nIn the context of the provided text, SGD is used to minimize the loss function L(w,cpos,cneg*) by making updates to the word embeddings after each training example.",
+    "contextual_retrieval_answer": "Stochastic gradient descent (SGD) is an optimization algorithm used to minimize the loss function in machine learning models. It differs from batch gradient descent in that it updates the model parameters after each training example, rather than after the entire batch of examples.\n\nIn batch gradient descent, the model parameters are updated after processing the entire batch of training examples, whereas in SGD, the model parameters are updated after processing each individual example. This makes SGD more computationally efficient and suitable for large datasets, but it can be more noisy and less stable than batch gradient descent.\n\nIn the context of the skip-gram model, SGD is used to minimize the loss function L(w,cpos,cneg*) = −log P(cpos|w) * P(cneg1|w) * ... * P(cnegk|w), where w is the target word, cpos is the positive context word, and cneg1 to cnegk are the negative context words. The update equations for SGD are given as ∂w = [σ(cpos ·w)−1]cpos + ∑[σ(cnegi ·w)−1]cnegi, where σ is the sigmoid function."
+  },
+  {
+    "question": "What is regularization in logistic regression and why is it used?",
+    "ground_truth_answer": "Regularization adds a penalty term to the loss function to discourage large weights and prevent overfitting. L2 regularization adds the sum of squared weights, and L1 regularization adds the sum of absolute weights.",
+    "naive_rag_answer": "The provided context does not contain enough information about regularization in logistic regression.",
+    "contextual_retrieval_answer": "There is no information about regularization in logistic regression in the provided context."
+  },
+  {
+    "question": "What does it mean for logistic regression to be a discriminative classifier?",
+    "ground_truth_answer": "A discriminative classifier directly models the conditional probability P(y|x) without modeling the joint distribution P(x,y). Logistic regression is discriminative because it directly learns the decision boundary between classes.",
+    "naive_rag_answer": "Logistic regression is a discriminative classifier because it models the probability of a target variable (in this case, whether a word is a context word or not) given the input features (the word embeddings), rather than modeling the underlying probability distribution of the data.",
+    "contextual_retrieval_answer": "The provided context does not contain enough information to answer the question about logistic regression being a discriminative classifier."
+  },
+  {
+    "question": "How does multinomial logistic regression extend binary logistic regression?",
+    "ground_truth_answer": "Multinomial logistic regression extends binary logistic regression to handle more than two classes using the softmax function to produce a probability distribution over all K classes.",
+    "naive_rag_answer": "The provided context does not contain information about multinomial logistic regression. It discusses binary logistic regression in the context of the sigmoid function and its application in the skip-gram model for Natural Language Processing.",
+    "contextual_retrieval_answer": "The provided context does not contain enough information to answer the question about how multinomial logistic regression extends binary logistic regression."
+  },
+  {
+    "question": "What is the softmax function and how is it computed?",
+    "ground_truth_answer": "The softmax function converts a vector of K real numbers into a probability distribution. For class k, softmax(z_k) = exp(z_k) / sum(exp(z_j)). All outputs sum to 1 and are used in multinomial logistic regression.",
+    "naive_rag_answer": "The softmax function is not explicitly mentioned in the provided context. However, it is related to the sigmoid function, which is mentioned in Chunk 2.\n\nThe sigmoid function is defined as σ(x) = 1 / (1 + exp(-x)), where x is the input.\n\nThe softmax function is typically used in multi-class classification problems, where it is used to compute the probability distribution over multiple classes. However, in the provided context, the sigmoid function is used for binary classification, and the softmax function is not explicitly mentioned.\n\nIf you are looking for information on the softmax function, I would recommend searching for additional resources or context.",
+    "contextual_retrieval_answer": "The softmax function is not explicitly mentioned in the provided context. However, it is implied in the equation L(w,cpos,cneg*) = −log, where the denominator is a sum over all possible context words, including the positive context word cpos and the k negative context words cnegi. This is a common form of the softmax function, which is used to normalize the probabilities of all possible context words.\n\nThe softmax function is computed as follows:\n\nsoftmax(x) = exp(x) / Σ exp(x)\n\nIn the context of the skip-gram model, the softmax function is used to compute the probability of each context word given the target word. The input x is the dot product of the target word embedding and the context word embedding. The softmax function normalizes these probabilities to ensure that they sum to 1.\n\nHowever, the context does not provide a detailed explanation of the softmax function or its computation."
+  },
+  {
+    "question": "What are features in the context of logistic regression for NLP?",
+    "ground_truth_answer": "Features are inputs to the logistic regression model representing properties of text. In NLP, features include word counts, TF-IDF values, presence of n-grams, or sentiment scores. The model learns a weight for each feature.",
+    "naive_rag_answer": "In the context of logistic regression for NLP, features refer to the input data used to train the model. In the provided context, the features are the word embeddings (target embeddings W and context embeddings C) that are used to compute the probability that a word is a context word for a target word.",
+    "contextual_retrieval_answer": "In the context of logistic regression for NLP, features refer to the input data used to train the model. In the skip-gram model, the features are the word embeddings, which are vector representations of word meanings learned directly from word distributions in texts. Specifically, the features are the target embeddings (W) and the context embeddings (C), which are matrices containing an embedding for every one of the |V| words in the vocabulary V."
+  },
+  {
+    "question": "What is the role of the bias term in logistic regression?",
+    "ground_truth_answer": "The bias term b allows the model to shift the decision boundary away from the origin. Without bias the decision boundary always passes through the origin, limiting the model's flexibility.",
+    "naive_rag_answer": "The bias term is not explicitly mentioned in the provided context. However, it is mentioned in the context of logistic regression in Chunk 2, where the probability that word c is a real context word for target word w is modeled using the sigmoid function σ(x). The probability is calculated as P(+|w,c) = σ(w^Tc), where w is the target word embedding and c is the context word embedding. The bias term is not included in this equation.",
+    "contextual_retrieval_answer": "The provided context does not contain enough information about the role of the bias term in logistic regression."
+  },
+  {
+    "question": "How is logistic regression related to maximum likelihood estimation?",
+    "ground_truth_answer": "Training logistic regression with cross-entropy loss is equivalent to maximum likelihood estimation. Minimizing the negative log-likelihood directly corresponds to maximizing the probability of observing the training labels.",
+    "naive_rag_answer": "The context does not explicitly mention the relationship between logistic regression and maximum likelihood estimation. However, it does mention that the probability of a word being a context word is estimated using the sigmoid function, and that the parameters of the model are learned using stochastic gradient descent. This implies that the model is being trained to maximize the likelihood of the observed data, but the direct connection to maximum likelihood estimation is not explicitly stated.",
+    "contextual_retrieval_answer": "The provided context does not explicitly mention the relationship between logistic regression and maximum likelihood estimation. However, it does mention the sigmoid function σ(x), which is the fundamental core of logistic regression, and the loss function L to be minimized, which is related to the negative log likelihood. \n\nIn general, logistic regression is a maximum likelihood estimation (MLE) problem, where the goal is to maximize the likelihood of the observed data given the model parameters. The loss function L mentioned in the context is indeed the negative log likelihood of the data given the model parameters."
+  },
+  {
+    "question": "What is the difference between generative and discriminative classifiers?",
+    "ground_truth_answer": "Generative classifiers model the joint distribution P(x,y) while discriminative classifiers directly model P(y|x). Logistic regression is discriminative; Naive Bayes is generative.",
+    "naive_rag_answer": "The provided context does not contain enough information to answer the question about the difference between generative and discriminative classifiers.",
+    "contextual_retrieval_answer": "The provided context does not contain enough information to answer the question about the difference between generative and discriminative classifiers."
+  },
+  {
+    "question": "What is the learning rate in gradient descent and what happens if it is too large or too small?",
+    "ground_truth_answer": "The learning rate controls how large parameter updates are. Too large causes divergence; too small causes very slow convergence. A good value is found via hyperparameter tuning.",
+    "naive_rag_answer": "Unfortunately, the provided context does not contain enough information about the learning rate in gradient descent.",
+    "contextual_retrieval_answer": "Unfortunately, the provided context does not explicitly mention the learning rate in gradient descent. However, it does mention the update equations for stochastic gradient descent (Eqs. 5.25-5.27), which involve the gradient of the loss function with respect to the embeddings. \n\nIn general, the learning rate is a hyperparameter that controls how quickly the model learns from the data. If the learning rate is too large, the model may overshoot the optimal solution and converge to a suboptimal point. If the learning rate is too small, the model may converge too slowly, which can lead to overfitting.\n\nHowever, without more information, I cannot provide a specific answer to the question."
+  },
+  {
+    "question": "How is logistic regression used for sentiment analysis?",
+    "ground_truth_answer": "In sentiment analysis, logistic regression classifies text as positive or negative by learning weights for features such as word presence or counts. The dot product with learned weights is passed through sigmoid to get the probability of positive sentiment.",
+    "naive_rag_answer": "The provided context does not mention the use of logistic regression for sentiment analysis. It discusses the use of logistic regression in the context of word embeddings and the Skip-gram algorithm, but does not specifically address sentiment analysis.",
+    "contextual_retrieval_answer": "The provided context does not explicitly mention how logistic regression is used for sentiment analysis. However, it does mention that sentiment classifiers (from Chapter 4) depend on the same words appearing in the training and test sets, and that word embeddings can be used to assign sentiment as long as the classifier sees some words with similar meanings."
+  },
+  {
+    "question": "What is the gradient of the cross-entropy loss with respect to a weight in logistic regression?",
+    "ground_truth_answer": "The gradient of the cross-entropy loss with respect to weight w_j is: (p - y) * x_j, where p is the predicted probability, y is the true label, and x_j is the feature value.",
+    "naive_rag_answer": "∂w = [σ(cpos ·w)−1]cpos",
+    "contextual_retrieval_answer": "The context does not contain enough information to answer the question about the gradient of the cross-entropy loss with respect to a weight in logistic regression. The provided context discusses the skip-gram model and word embeddings, but it does not cover logistic regression or the cross-entropy loss."
+  },
+  {
+    "question": "What is overfitting in logistic regression and how can it be detected?",
+    "ground_truth_answer": "Overfitting occurs when the model fits training data too well but fails to generalize. It is detected when training accuracy is high but validation accuracy is significantly lower. Regularization helps mitigate it.",
+    "naive_rag_answer": "Unfortunately, the provided context does not contain enough information about overfitting in logistic regression.",
+    "contextual_retrieval_answer": "The provided context does not contain information about logistic regression or overfitting. It appears to be discussing the skip-gram model and word embeddings in the context of Natural Language Processing."
+  },
+  {
+    "question": "What is the interpretation of weights in a logistic regression model?",
+    "ground_truth_answer": "Each weight represents the contribution of a feature to the log-odds of the positive class. A positive weight increases the probability of the positive class; negative decreases it. This makes logistic regression interpretable.",
+    "naive_rag_answer": "Unfortunately, the provided context does not contain enough information to accurately answer the question about the interpretation of weights in a logistic regression model. The context primarily discusses the skip-gram model and its application in natural language processing, but it does not provide information about logistic regression or the interpretation of its weights.",
+    "contextual_retrieval_answer": "Unfortunately, the provided context does not contain enough information to answer the question about the interpretation of weights in a logistic regression model."
+  },
+  {
+    "question": "What evaluation metrics are commonly used for logistic regression classifiers?",
+    "ground_truth_answer": "Common metrics include accuracy, precision, recall, and F1-score. For imbalanced classes, precision, recall, and F1 are more informative than accuracy alone.",
+    "naive_rag_answer": "The context does not mention evaluation metrics for logistic regression classifiers. It discusses evaluation metrics for vector models, specifically extrinsic evaluation on tasks and intrinsic evaluations such as similarity metrics (WordSim-353, SimLex-999, TOEFL dataset, Stanford Contextual Word Similarity (SCWS) dataset, and Word-in-Context (WiC) dataset).",
+    "contextual_retrieval_answer": "Unfortunately, the provided context does not contain enough information about the evaluation metrics used for logistic regression classifiers."
+  }
+]

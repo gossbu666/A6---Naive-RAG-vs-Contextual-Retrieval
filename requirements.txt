@@ -1,0 +1,28 @@
+# Groq (LLM generation)
+groq>=0.9.0
+
+# Embeddings (local, no API needed)
+sentence-transformers>=3.0.0
+
+# Vector Store
+chromadb>=0.5.0
+
+# PDF & Text Processing
+pymupdf>=1.24.0
+
+# Evaluation
+rouge-score>=0.1.2
+
+# Web App
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Data & Utils
+pandas>=2.2.0
+numpy>=1.26.0
+tqdm>=4.66.0
+python-dotenv>=1.0.0
+
+# Jupyter
+jupyterlab>=4.1.0
+ipywidgets>=8.1.0

@@ -1,0 +1,32 @@
+# Environment
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.nbconvert/
+
+# Data (large files)
+data/chapter5.pdf
+data/chroma/
+data/*.txt
+data/*.json
+
+# Screenshots (optional – remove if you want to commit them)
+# screenshots/
+
+# OS
+.DS_Store
+Thumbs.db
